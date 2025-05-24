@@ -1,0 +1,50 @@
+package co.edu.poli.examen3.servicios;
+
+import co.edu.poli.examen3.modelo.RegistroMedico;
+
+/**
+ * Interfaz que define las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) 
+ * y de persistencia (serializar y deserializar) para los registros médicos.
+ */
+public interface Operacion {
+
+    /**
+     * Crea un nuevo registro médico.
+     *
+     * @param rm El registro médico a crear.
+     * @return Mensaje que indica el éxito de la operación.
+     */
+    public String create(RegistroMedico rm);
+
+    /**
+     * Lee un registro médico específico por su índice.
+     *
+     * @param id El índice del registro a leer.
+     * @return El registro médico correspondiente al índice proporcionado, o null si no se encuentra.
+     */
+    public RegistroMedico read(int id);
+
+    /**
+     * Lee todos los registros médicos almacenados.
+     *
+     * @return Un arreglo con todos los registros médicos.
+     */
+    public RegistroMedico[] readAll();
+
+    /**
+     * Actualiza un registro médico específico.
+     *
+     * @param id El índice del registro a actualizar.
+     * @param rm El nuevo registro médico que reemplazará al anterior.
+     * @return El registro médico que fue reemplazado, o null si no se encuentra.
+     */
+    public RegistroMedico update(int id, RegistroMedico rm);
+
+    /**
+     * Elimina un registro médico específico.
+     *
+     * @param id El índice del registro a eliminar.
+     * @return El registro médico que fue eliminado, o null si no se encuentra.
+     */
+    public RegistroMedico delete(int id);
+}
