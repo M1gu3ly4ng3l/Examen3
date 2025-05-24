@@ -1,0 +1,15 @@
+Êþº¾   7 :
+       )co/edu/poli/examen3/modelo/RegistroMedico <init> K(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V	  	  
+ 
+  *co/edu/poli/examen3/modelo/ConsultaGeneral motivoConsulta Ljava/lang/String;
+     toString ()Ljava/lang/String;      makeConcatWithConstants 8(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;   java/io/Serializable serialVersionUID J 
+ConstantValue        ](Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V Code LineNumberTable LocalVariableTable this ,Lco/edu/poli/examen3/modelo/ConsultaGeneral; codigo fecha nombrePaciente diagnosticoInicial getMotivoConsulta setMotivoConsulta (Ljava/lang/String;)V 
+SourceFile ConsultaGeneral.java BootstrapMethods - %
+ConsultaGeneral{motivoConsulta=''} /
+ 0 1  2  3 $java/lang/invoke/StringConcatFactory ˜(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite; InnerClasses  6 %java/lang/invoke/MethodHandles$Lookup  8 java/lang/invoke/MethodHandles Lookup !                
+            t     *+,-· *µ  ±             	 !  "    >       !      "      #      $      %      
+    &      /     *´  °           *           !    ' (     >     *+µ  ±       
+    3  4           !      
+          8     *· 
+*´  º   °           >           !    )    * +     .  , 4   
+  5 7 9 
