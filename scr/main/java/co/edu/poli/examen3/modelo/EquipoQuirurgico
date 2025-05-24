@@ -1,0 +1,112 @@
+package co.edu.poli.examen3.modelo;
+
+import java.io.Serializable;
+
+/**
+ * Representa un equipo quirúrgico que participa en procedimientos médicos.
+ * Contiene información sobre la especialidad del equipo, el número de integrantes
+ * y un identificador único.
+ */
+public class EquipoQuirurgico implements Serializable {
+
+    /*
+     * Identificador de versión para la serialización.
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Especialidad médica del equipo quirúrgico (por ejemplo, cirugía general, ortopedia, etc.).
+     */
+    private String especialidad;
+
+    /**
+     * Número de integrantes que conforman el equipo quirúrgico.
+     */
+    private int numeroIntegrantes;
+
+    /**
+     * Identificador único del equipo quirúrgico.
+     */
+    private int id;
+
+    /**
+     * Constructor que inicializa los atributos del equipo quirúrgico.
+     *
+     * @param especialidad       Especialidad médica del equipo.
+     * @param numeroIntegrantes  Número de personas que conforman el equipo.
+     * @param id                 Identificador único del equipo quirúrgico.
+     */
+    public EquipoQuirurgico(String especialidad, int numeroIntegrantes, int id) {
+        this.especialidad = especialidad;
+        this.numeroIntegrantes = numeroIntegrantes;
+        this.id = id;
+    }
+
+    /**
+     * Obtiene la especialidad del equipo quirúrgico.
+     *
+     * @return Especialidad médica en formato de texto.
+     */
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    /**
+     * Establece la especialidad del equipo quirúrgico.
+     *
+     * @param especialidad Especialidad médica en formato de texto.
+     */
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    /**
+     * Obtiene el número de integrantes del equipo quirúrgico.
+     *
+     * @return Cantidad de personas en el equipo.
+     */
+    public int getNumeroIntegrantes() {
+        return numeroIntegrantes;
+    }
+
+    /**
+     * Establece el número de integrantes del equipo quirúrgico.
+     *
+     * @param numeroIntegrantes Cantidad de personas en el equipo.
+     */
+    public void setNumeroIntegrantes(int numeroIntegrantes) {
+        this.numeroIntegrantes = numeroIntegrantes;
+    }
+
+    /**
+     * Obtiene el identificador del equipo quirúrgico.
+     *
+     * @return Identificador numérico.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Establece el identificador del equipo quirúrgico.
+     *
+     * @param id Identificador numérico.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Retorna una representación en cadena del objeto equipo quirúrgico.
+     *
+     * @return Cadena con los valores de los atributos.
+     */
+    @Override
+    public String toString() {
+        return "EquipoQuirurgico{" +
+               "especialidad='" + especialidad + '\'' +
+               ", numeroIntegrantes=" + numeroIntegrantes +
+               ", id=" + id +
+               '}';
+    }
+}
