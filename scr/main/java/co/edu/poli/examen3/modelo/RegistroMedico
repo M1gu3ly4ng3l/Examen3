@@ -1,0 +1,135 @@
+package co.edu.poli.examen3.modelo;
+
+import java.io.Serializable;
+
+/**
+ * Representa un registro médico genérico asociado a un paciente. Esta clase
+ * sirve como base para otros tipos de registros como consultas o cirugías.
+ */
+
+public class RegistroMedico implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Constructor que inicializa los atributos de un registro médico.
+     *
+     * @param codigo Código identificador del registro.
+     * @param fecha Fecha en la que se realizó el registro.
+     * @param nombrePaciente Nombre del paciente asociado al registro.
+     * @param diagnosticoInicial Diagnóstico inicial dado al paciente.
+     */
+    public RegistroMedico(String codigo, String fecha, String nombrePaciente, String diagnosticoInicial) {
+        this.codigo = codigo;
+        this.fecha = fecha;
+        this.nombrePaciente = nombrePaciente;
+        this.diagnosticoInicial = diagnosticoInicial;
+    }
+
+    /**
+     * Código único que identifica el registro médico.
+     */
+    private String codigo;
+
+    /**
+     * Obtiene el código del registro médico.
+     *
+     * @return Código identificador del registro.
+     */
+    public String getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * Establece el código del registro médico.
+     *
+     * @param codigo Código identificador del registro.
+     */
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    /**
+     * Fecha en la que se realizó el registro médico.
+     */
+    private String fecha;
+
+    /**
+     * Obtiene la fecha del registro médico.
+     *
+     * @return Fecha del registro.
+     */
+    public String getFecha() {
+        return fecha;
+    }
+
+    /**
+     * Establece la fecha del registro médico.
+     *
+     * @param fecha Fecha del registro.
+     */
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    /**
+     * Nombre del paciente al que pertenece el registro.
+     */
+    private String nombrePaciente;
+
+    /**
+     * Obtiene el nombre del paciente asociado al registro.
+     *
+     * @return Nombre del paciente.
+     */
+    public String getNombrePaciente() {
+        return nombrePaciente;
+    }
+
+    /**
+     * Establece el nombre del paciente asociado al registro.
+     *
+     * @param nombrePaciente Nombre del paciente.
+     */
+    public void setNombrePaciente(String nombrePaciente) {
+        this.nombrePaciente = nombrePaciente;
+    }
+
+    /**
+     * Diagnóstico inicial realizado al paciente.
+     */
+    private String diagnosticoInicial;
+
+    /**
+     * Obtiene el diagnóstico inicial registrado.
+     *
+     * @return Diagnóstico inicial.
+     */
+    public String getDiagnosticoInicial() {
+        return diagnosticoInicial;
+    }
+
+    /**
+     * Establece el diagnóstico inicial registrado.
+     *
+     * @param diagnosticoInicial Diagnóstico inicial.
+     */
+    public void setDiagnosticoInicial(String diagnosticoInicial) {
+        this.diagnosticoInicial = diagnosticoInicial;
+    }
+
+    /**
+     * Retorna una representación en cadena del registro médico.
+     *
+     * @return Cadena que representa el contenido del registro.
+     */
+    @Override
+    public String toString() {
+        return "RegistroMedico{"
+                + "codigo=" + codigo
+                + ", fecha=" + fecha
+                + ", nombrePaciente=" + nombrePaciente
+                + ", diagnosticoxInicial=" + diagnosticoInicial
+                + '}';
+    }
+}
