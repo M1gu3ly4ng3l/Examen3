@@ -1,0 +1,9 @@
+<javadocOptions>
+<docletArtifacts>
+<docletArtifact/>
+</docletArtifacts>
+<tagletArtifacts>
+<tagletArtifact/>
+</tagletArtifacts>
+<javadocResourcesDirectory>src/main/javadoc</javadocResourcesDirectory>
+</javadocOptions>
