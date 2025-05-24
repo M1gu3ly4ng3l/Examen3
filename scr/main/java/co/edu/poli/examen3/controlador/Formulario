@@ -1,0 +1,271 @@
+package co.edu.poli.examen3.controlador;
+
+import co.edu.poli.examen3.modelo.*;
+import co.edu.poli.examen3.servicios.ImplementacionOperacion;
+import java.util.Arrays;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+
+/**
+ * Controlador principal del formulario de la aplicación de gestión de registros
+ * médicos. Maneja la interacción del usuario con la interfaz gráfica y realiza
+ * operaciones CRUD sobre los registros médicos utilizando la clase
+ * ImplementacionOperacion.
+ */
+public class Formulario {
+
+    // Instancia para realizar operaciones CRUD
+    private ImplementacionOperacion operacion;
+
+    // Instancia adicional para serialización y deserialización
+    private ImplementacionOperacion Guardar;
+
+    // Datos auxiliares predefinidos para creación de registros
+    InstrumentalMedico[] instrumentos = {
+        new InstrumentalMedico(1, "bisturies", 3),
+        new InstrumentalMedico(2, "pinzas", 2)};
+    EquipoQuirurgico equipo1 = new EquipoQuirurgico("Traumatologia", 6, 1);
+    EquipoQuirurgico equipo2 = new EquipoQuirurgico("Oftalmologia", 7, 2);
+
+    // Elementos de la interfaz definidos por FXML
+    @FXML
+    private Button bttAgregar;
+    @FXML
+    private Button bttBorrar;
+    @FXML
+    private Button bttBuscar;
+    @FXML
+    private Button bttEditar;
+    @FXML
+    private Button bttSerializar;
+    @FXML
+    private Button bttdeserializar;
+    @FXML
+    private Button bttread;
+    @FXML
+    private Button bttreadAll;
+
+    @FXML
+    private ComboBox<String> comboRegistro;
+    @FXML
+    private ComboBox<String> combotiporegistro;
+
+    @FXML
+    private TextField mostrarSerializar;
+    @FXML
+    private TextField mostrarborrar;
+    @FXML
+    private TextField mostrarcrear;
+    @FXML
+    private TextField mostrareditar;
+
+    @FXML
+    private Spinner<Integer> spinnerFecha;
+    @FXML
+    private Spinner<Integer> spinnerfecha;
+
+    @FXML
+    private TextField txtID;
+    @FXML
+    private TextArea txtListadoRegistros;
+    @FXML
+    private TextField txtNombre;
+    @FXML
+    private TextField txtRegistroleer;
+    @FXML
+    private TextField txtRegistrosEditar;
+    @FXML
+    private TextField txtdiagnoin;
+    @FXML
+    private TextField txtdiagnostico;
+    @FXML
+    private TextField txtname;
+    @FXML
+    private TextField txtregtistrordelet;
+
+    /**
+     * Inicializa los valores de la interfaz gráfica al cargar la ventana.
+     * Establece valores predeterminados en los Spinners y llena los ComboBoxes.
+     */
+    @FXML
+    public void initialize() {
+        operacion = new ImplementacionOperacion();
+        Guardar = new ImplementacionOperacion();
+
+        spinnerFecha.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1900, 2100, 2025));
+        spinnerfecha.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1900, 2100, 2025));
+
+        comboRegistro.getItems().addAll("Consulta General", "Cirugía");
+        combotiporegistro.getItems().addAll("Consulta General", "Cirugía");
+    }
+
+    /**
+     * Busca un registro médico por su índice y muestra sus datos en la
+     * interfaz.
+     */
+    @FXML
+    void buscar(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(txtRegistrosEditar.getText());
+            RegistroMedico rm = operacion.read(id);
+            if (rm != null) {
+                txtNombre.setText(rm.getNombrePaciente());
+                spinnerfecha.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1900, 2100, 2025));
+                txtdiagnostico.setText(rm.getDiagnosticoInicial());
+                if (rm instanceof Cirugia) {
+                    combotiporegistro.setValue("Cirugía");
+                } else if (rm instanceof ConsultaGeneral) {
+                    combotiporegistro.setValue("Consulta General");
+                } else {
+                    combotiporegistro.setValue("");
+                }
+            } else {
+                mostrareditar.setText("No se encontró el registro");
+            }
+        } catch (Exception e) {
+            mostrareditar.setText("Error: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Crea un nuevo registro médico según el tipo seleccionado y lo almacena.
+     */
+    @FXML
+    void create(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(txtID.getText());
+            String nombre = txtname.getText();
+            String tipo = combotiporegistro.getValue();
+
+            RegistroMedico nueva = null;
+
+            if ("Consulta General".equalsIgnoreCase(tipo)) {
+                nueva = new ConsultaGeneral("1", "2024", nombre, "", "Dolores");
+            } else if ("Cirugía".equalsIgnoreCase(tipo)) {
+                nueva = new Cirugia("1", "2024", nombre, "", 12.5f, equipo1, instrumentos);
+            }
+
+            if (nueva != null) {
+                String msg = operacion.create(nueva);
+                mostrarcrear.setText(msg);
+            } else {
+                mostrarcrear.setText("Tipo de Registro inválido");
+            }
+        } catch (Exception e) {
+            mostrarcrear.setText("Error al crear: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Lee un registro médico por índice y lo muestra en el área de texto.
+     */
+    @FXML
+    void read(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(txtRegistroleer.getText());
+            RegistroMedico rm = operacion.read(id);
+            txtListadoRegistros.setText(rm != null ? rm.toString() : "Registro no encontrado");
+        } catch (Exception e) {
+            txtListadoRegistros.setText("Error: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Lee todos los registros médicos almacenados y los muestra en el área de
+     * texto.
+     */
+    @FXML
+    void readAll(ActionEvent event) {
+        try {
+            StringBuilder sb = new StringBuilder();
+            for (RegistroMedico rm : operacion.readAll()) {
+                sb.append(rm.toString()).append("\n");
+            }
+            txtListadoRegistros.setText(sb.toString());
+        } catch (Exception e) {
+            txtListadoRegistros.setText("Error al leer todos registros");
+        }
+    }
+
+    /**
+     * Actualiza un registro médico existente con nueva información.
+     */
+    @FXML
+    void update(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(txtRegistrosEditar.getText());
+            RegistroMedico existente = operacion.read(id);
+
+            if (existente != null) {
+                String nombre = txtNombre.getText();
+                spinnerfecha.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1900, 2100, 2025));
+                String diagnostico = txtdiagnoin.getText();
+                String tipo = comboRegistro.getValue();
+
+                RegistroMedico nueva = null;
+
+                if ("ConsultaGeneral".equalsIgnoreCase(tipo)) {
+                    nueva = new ConsultaGeneral("3", "10 de febrero, 2022", nombre, diagnostico, tipo);
+                } else if ("Cirugía".equalsIgnoreCase(tipo)) {
+                    nueva = new Cirugia("4", "25 de marzo, 2024", nombre, diagnostico, 12.5f, equipo2, instrumentos);
+                }
+
+                if (nueva != null) {
+                    operacion.update(id, nueva);
+                    mostrareditar.setText("Registro actualizada");
+                }
+            } else {
+                mostrareditar.setText("No se encontro Registro para editar");
+            }
+        } catch (Exception e) {
+            mostrareditar.setText("Error al editar: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Elimina un registro médico por índice.
+     */
+    @FXML
+    void delete(ActionEvent event) {
+        try {
+            int id = Integer.parseInt(txtregtistrordelet.getText());
+            RegistroMedico f = operacion.delete(id);
+            mostrarborrar.setText(f != null ? "Registro eliminado" : "No se encontró Registro");
+        } catch (Exception e) {
+            mostrarborrar.setText("Error: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Serializa el arreglo de registros médicos en un archivo.
+     */
+    @FXML
+    void serializar(ActionEvent event) {
+        RegistroMedico[] rm = operacion.readAll();
+        String resultado = Guardar.serializar(rm, "", "registro.dat");
+        mostrarSerializar.setText(resultado);
+    }
+
+    /**
+     * Deserializa registros médicos desde un archivo y los carga al sistema.
+     */
+    @FXML
+    void deserializar(ActionEvent event) {
+        try {
+            RegistroMedico[] des = Guardar.deserializar("", "registros.dat");
+            if (des != null) {
+                operacion = new ImplementacionOperacion() {
+                };
+                for (RegistroMedico rm : des) {
+                    operacion.create(rm);
+                }
+                mostrarSerializar.setText("Registros Médicos cargados desde archivo");
+            } else {
+                mostrarSerializar.setText("No se pudieron cargar los registros");
+            }
+        } catch (Exception e) {
+            mostrarSerializar.setText("Error: " + e.getMessage());
+        }
+    }
+}
