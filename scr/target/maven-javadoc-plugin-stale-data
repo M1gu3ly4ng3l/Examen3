@@ -1,0 +1,51 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+@argfile
+--class-path
+'C:/Users/User/.m2/repository/org/openjfx/javafx-controls/13/javafx-controls-13.jar;C:/Users/User/.m2/repository/org/openjfx/javafx-graphics/13/javafx-graphics-13.jar;C:/Users/User/.m2/repository/org/openjfx/javafx-base/13/javafx-base-13.jar;C:/Users/User/.m2/repository/org/openjfx/javafx-fxml/13/javafx-fxml-13.jar'
+--module-path
+'C:/Users/User/.m2/repository/org/openjfx/javafx-graphics/13/javafx-graphics-13-win.jar;C:/Users/User/Music/Examen3/target/classes;C:/Users/User/.m2/repository/org/openjfx/javafx-fxml/13/javafx-fxml-13-win.jar;C:/Users/User/.m2/repository/org/openjfx/javafx-controls/13/javafx-controls-13-win.jar;C:/Users/User/.m2/repository/org/openjfx/javafx-base/13/javafx-base-13-win.jar'
+--patch-module
+co.edu.poli.examen3='C:/Users/User/Music/Examen3/src/main/java'
+-encoding
+'UTF-8'
+-protected
+-source
+'11'
+--module-source-path
+'C:/Users/User/Music/Examen3/target/reports/apidocs/src'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/User/Music/Examen3/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Examen3 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' 'C:/Users/User/Music/Examen3/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Examen3 1.0-SNAPSHOT API'
+co.edu.poli.examen3.controlador
+co.edu.poli.examen3.vista
+'C:/Users/User/Music/Examen3/src/main/java/module-info.java'
+C:\Users\User\Music\Examen3\target\reports\apidocs\allclasses-index.html = 1748118586228
+C:\Users\User\Music\Examen3\target\reports\apidocs\allpackages-index.html = 1748118586236
+C:\Users\User\Music\Examen3\target\reports\apidocs\element-list = 1748118585544
+C:\Users\User\Music\Examen3\target\reports\apidocs\help-doc.html = 1748118586328
+C:\Users\User\Music\Examen3\target\reports\apidocs\index-all.html = 1748118586308
+C:\Users\User\Music\Examen3\target\reports\apidocs\index.html = 1748118586319
+C:\Users\User\Music\Examen3\target\reports\apidocs\member-search-index.js = 1748118586245
+C:\Users\User\Music\Examen3\target\reports\apidocs\module-search-index.js = 1748118586239
+C:\Users\User\Music\Examen3\target\reports\apidocs\overview-tree.html = 1748118586136
+C:\Users\User\Music\Examen3\target\reports\apidocs\package-search-index.js = 1748118586241
+C:\Users\User\Music\Examen3\target\reports\apidocs\search.html = 1748118586315
+C:\Users\User\Music\Examen3\target\reports\apidocs\tag-search-index.js = 1748118586247
+C:\Users\User\Music\Examen3\target\reports\apidocs\type-search-index.js = 1748118586243
