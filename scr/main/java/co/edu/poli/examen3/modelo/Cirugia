@@ -1,0 +1,122 @@
+package co.edu.poli.examen3.modelo;
+
+import java.io.Serializable;
+import java.util.Arrays;
+
+/**
+ * Representa una cirugía como un tipo específico de registro médico.
+ * Contiene información adicional como la duración del procedimiento,
+ * el equipo quirúrgico involucrado y el instrumental médico utilizado.
+ */
+public class Cirugia extends RegistroMedico implements Serializable {
+
+    /*
+     * Identificador de versión para la serialización de esta clase.
+     * Esto garantiza la compatibilidad durante el proceso de deserialización.
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Duración del procedimiento quirúrgico en horas.
+     */
+    private float duracionProcedimiento;
+
+    /**
+     * Equipo quirúrgico encargado de la cirugía.
+     */
+    private EquipoQuirurgico equipoQuirurgico;
+
+    /**
+     * Arreglo de instrumentos médicos utilizados en la cirugía.
+     */
+    private InstrumentalMedico[] instrumentalMedico;
+
+    /**
+     * Constructor para inicializar una cirugía con todos sus atributos.
+     *
+     * @param codigo               Código identificador del registro.
+     * @param fecha                Fecha de la cirugía.
+     * @param nombrePaciente       Nombre del paciente.
+     * @param diagnosticoInicial   Diagnóstico inicial previo a la cirugía.
+     * @param duracionProcedimiento Duración del procedimiento quirúrgico en horas.
+     * @param equipoQuirurgico     Equipo quirúrgico encargado del procedimiento.
+     * @param instrumentalMedico   Conjunto de instrumentos médicos utilizados.
+     */
+    public Cirugia(String codigo, String fecha, String nombrePaciente, String diagnosticoInicial,
+                   float duracionProcedimiento, EquipoQuirurgico equipoQuirurgico, InstrumentalMedico[] instrumentalMedico) {
+        super(codigo, fecha, nombrePaciente, diagnosticoInicial);
+        this.duracionProcedimiento = duracionProcedimiento;
+        this.equipoQuirurgico = equipoQuirurgico;
+        this.instrumentalMedico = instrumentalMedico;
+    }
+
+    /**
+     * Obtiene la duración del procedimiento.
+     *
+     * @return Duración en horas.
+     */
+    public float getDuracionProcedimiento() {
+        return duracionProcedimiento;
+    }
+
+    /**
+     * Establece la duración del procedimiento.
+     *
+     * @param duracionProcedimiento Duración en horas.
+     */
+    public void setDuracionProcedimiento(float duracionProcedimiento) {
+        this.duracionProcedimiento = duracionProcedimiento;
+    }
+
+    /**
+     * Obtiene el equipo quirúrgico.
+     *
+     * @return Objeto {@link EquipoQuirurgico}.
+     */
+    public EquipoQuirurgico getEquipoQuirurgico() {
+        return equipoQuirurgico;
+    }
+
+    /**
+     * Establece el equipo quirúrgico.
+     *
+     * @param equipoQuirurgico Objeto {@link EquipoQuirurgico}.
+     */
+    public void setEquipoQuirurgico(EquipoQuirurgico equipoQuirurgico) {
+        this.equipoQuirurgico = equipoQuirurgico;
+    }
+
+    /**
+     * Obtiene el instrumental médico utilizado.
+     *
+     * @return Arreglo de {@link InstrumentalMedico}.
+     */
+    public InstrumentalMedico[] getInstrumentalMedico() {
+        return instrumentalMedico;
+    }
+
+    /**
+     * Establece el instrumental médico.
+     *
+     * @param instrumentalMedico Arreglo de {@link InstrumentalMedico}.
+     */
+    public void setInstrumentalMedico(InstrumentalMedico[] instrumentalMedico) {
+        this.instrumentalMedico = instrumentalMedico;
+    }
+
+    /**
+     * Retorna una representación en cadena del objeto, incluyendo los atributos
+     * heredados del registro médico y los específicos de la cirugía.
+     *
+     * @return Cadena que representa la cirugía.
+     */
+    @Override
+    public String toString() {
+        return super.toString() + "\nCirugia{"
+                + "duracionProcedimiento=" + duracionProcedimiento
+                + ", equipoQuirurgico=" + equipoQuirurgico
+                + ", instrumentalMedico=" + Arrays.toString(instrumentalMedico)
+                + '}';
+    }
+
+}
