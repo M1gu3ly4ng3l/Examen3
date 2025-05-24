@@ -1,0 +1,111 @@
+package co.edu.poli.examen3.modelo;
+
+import java.io.Serializable;
+
+/**
+ * Representa un instrumento médico utilizado en un procedimiento.
+ * Contiene información sobre su identificador, nombre y la cantidad utilizada.
+ */
+public class InstrumentalMedico implements Serializable {
+
+    /*
+     * Identificador de versión para la serialización.
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Identificador único del instrumento médico.
+     */
+    private int id;
+
+    /**
+     * Nombre del instrumento médico.
+     */
+    private String nombreInstrumental;
+
+    /**
+     * Cantidad utilizada del instrumento durante el procedimiento.
+     */
+    private int cantidadUtilizada;
+
+    /**
+     * Constructor que inicializa los atributos del instrumento médico.
+     *
+     * @param id                Identificador único del instrumento.
+     * @param nombreInstrumental Nombre del instrumento médico.
+     * @param cantidadUtilizada  Cantidad del instrumento que fue utilizada.
+     */
+    public InstrumentalMedico(int id, String nombreInstrumental, int cantidadUtilizada) {
+        this.id = id;
+        this.nombreInstrumental = nombreInstrumental;
+        this.cantidadUtilizada = cantidadUtilizada;
+    }
+
+    /**
+     * Obtiene el identificador del instrumento médico.
+     *
+     * @return Identificador numérico.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Establece el identificador del instrumento médico.
+     *
+     * @param id Identificador numérico.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Obtiene el nombre del instrumento médico.
+     *
+     * @return Nombre del instrumento en formato de texto.
+     */
+    public String getNombreInstrumental() {
+        return nombreInstrumental;
+    }
+
+    /**
+     * Establece el nombre del instrumento médico.
+     *
+     * @param nombreInstrumental Nombre del instrumento en formato de texto.
+     */
+    public void setNombreInstrumental(String nombreInstrumental) {
+        this.nombreInstrumental = nombreInstrumental;
+    }
+
+    /**
+     * Obtiene la cantidad del instrumento utilizada.
+     *
+     * @return Cantidad utilizada.
+     */
+    public int getCantidadUtilizada() {
+        return cantidadUtilizada;
+    }
+
+    /**
+     * Establece la cantidad del instrumento utilizada.
+     *
+     * @param cantidadUtilizada Cantidad utilizada.
+     */
+    public void setCantidadUtilizada(int cantidadUtilizada) {
+        this.cantidadUtilizada = cantidadUtilizada;
+    }
+
+    /**
+     * Retorna una representación en cadena del objeto InstrumentalMedico.
+     *
+     * @return Cadena con los valores de los atributos.
+     */
+    @Override
+    public String toString() {
+        return "InstrumentalMedico{" +
+               "id=" + id +
+               ", nombreInstrumental='" + nombreInstrumental + '\'' +
+               ", cantidadUtilizada=" + cantidadUtilizada +
+               '}';
+    }
+}
