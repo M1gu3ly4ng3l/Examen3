@@ -1,0 +1,22 @@
+package co.edu.poli.examen3.servicios;
+
+import co.edu.poli.examen3.modelo.RegistroMedico;
+
+public interface Guardar {
+
+    /**
+     * Serializa un arreglo de registros médicos y lo guarda en un archivo.
+     *
+     * @param datos El arreglo de registros médicos a serializar.
+     */
+    public String serializar(RegistroMedico[] RegistroMedico, String path, String name);
+
+    /**
+     * Deserializa los registros médicos desde un archivo y los carga en
+     * memoria.
+     *
+     * @return El arreglo de registros médicos deserializados, o null si ocurre
+     * un error.
+     */
+    public RegistroMedico[] deserializar(String path, String name);
+}
