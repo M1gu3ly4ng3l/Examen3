@@ -1,0 +1,149 @@
+package co.edu.poli.examen3.servicios;
+
+import co.edu.poli.examen3.modelo.RegistroMedico;
+import java.io.*;
+
+/**
+ * Implementación de la interfaz Operacion que proporciona operaciones CRUD
+ * (crear, leer, actualizar y eliminar) sobre registros médicos.
+ * Además, permite la serialización y deserialización de los registros médicos
+ * a un archivo para almacenamiento persistente.
+ */
+public class ImplementacionOperacion implements Operacion, Guardar {
+
+    /**
+     * Arreglo que almacena los registros médicos.
+     */
+    private RegistroMedico[] registros;
+
+    /**
+     * Contador que lleva el control del número de registros almacenados.
+     */
+    private int contador;
+
+    /**
+     * Constructor que inicializa el arreglo de registros médicos con una capacidad inicial
+     * y establece el contador en cero.
+     */
+    public ImplementacionOperacion() {
+        registros = new RegistroMedico[10]; // capacidad inicial
+        contador = 0;
+    }
+
+    /**
+     * Crea un nuevo registro médico y lo agrega al arreglo.
+     * Si el arreglo está lleno, aumenta su tamaño.
+     *
+     * @param rm El registro médico a agregar.
+     * @return Mensaje indicando el éxito de la operación.
+     */
+    @Override
+    public String create(RegistroMedico rm) {
+        if (contador == registros.length) {
+            // Ampliar arreglo si está lleno
+            RegistroMedico[] nuevo = new RegistroMedico[registros.length + 10];
+            System.arraycopy(registros, 0, nuevo, 0, registros.length);
+            registros = nuevo;
+        }
+        registros[contador++] = rm;
+        return "Registro creado correctamente.";
+    }
+
+    /**
+     * Lee un registro médico por su índice (ID).
+     *
+     * @param id El índice del registro a leer.
+     * @return El registro médico correspondiente o null si no se encuentra.
+     */
+    @Override
+    public RegistroMedico read(int id) {
+        if (id >= 0 && id < contador) {
+            return registros[id];
+        }
+        return null;
+    }
+
+    /**
+     * Lee todos los registros médicos almacenados.
+     *
+     * @return Un arreglo con todos los registros médicos.
+     */
+    @Override
+public RegistroMedico[] readAll() {
+    RegistroMedico[] resultado = new RegistroMedico[contador];
+    for (int i = 0; i < contador; i++) {
+        resultado[i] = registros[i];
+    }
+    return resultado;
+}
+
+
+    /**
+     * Actualiza un registro médico en el índice especificado.
+     *
+     * @param id El índice del registro a actualizar.
+     * @param rm El nuevo registro médico que reemplazará al anterior.
+     * @return El registro médico anterior al que fue reemplazado o null si no se encuentra.
+     */
+    @Override
+    public RegistroMedico update(int id, RegistroMedico rm) {
+        if (id >= 0 && id < contador) {
+            RegistroMedico anterior = registros[id];
+            registros[id] = rm;
+            return anterior;
+        }
+        return null;
+    }
+
+    /**
+     * Elimina un registro médico en el índice especificado y desplaza los
+     * registros posteriores para llenar el espacio.
+     *
+     * @param id El índice del registro a eliminar.
+     * @return El registro médico eliminado o null si no se encuentra.
+     */
+    @Override
+    public RegistroMedico delete(int id) {
+        if (id >= 0 && id < contador) {
+            RegistroMedico eliminado = registros[id];
+            // Desplazar todos a la izquierda
+            for (int i = id; i < contador - 1; i++) {
+                registros[i] = registros[i + 1];
+            }
+            registros[--contador] = null; // Limpia el último espacio
+            return eliminado;
+        }
+        return null;
+    }
+
+    /**
+     * Serializa el arreglo de registros médicos y los guarda en un archivo.
+     *
+     * @param datos El arreglo de registros médicos a serializar.
+     */
+    public String serializar(RegistroMedico[] rm, String path, String name) {
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("registros.dat"))) {
+        oos.writeObject(rm);
+        return "Serialización exitosa.";
+    } catch (IOException e) {
+        e.printStackTrace();
+        return "Error al serializar: " + e.getMessage();
+    }
+}
+
+
+    /**
+     * Deserializa los registros médicos desde un archivo y los carga en el arreglo.
+     *
+     * @return El arreglo de registros médicos deserializados o null si ocurre un error.
+     */
+    
+     public RegistroMedico[] deserializar(String path, String name) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("registros.dat"))) {
+            return (RegistroMedico[]) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
