@@ -1,0 +1,67 @@
+package co.edu.poli.examen3.modelo;
+
+import java.io.Serializable;
+
+/**
+ * Representa una consulta médica general como un tipo específico de registro médico.
+ * Incluye el motivo principal de la consulta del paciente.
+ */
+public class ConsultaGeneral extends RegistroMedico implements Serializable {
+
+    /*
+     * Identificador de versión para la serialización.
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Motivo por el cual el paciente asiste a la consulta.
+     */
+    private String motivoConsulta;
+
+    /**
+     * Constructor que inicializa los datos de una consulta general.
+     *
+     * @param codigo             Código identificador del registro.
+     * @param fecha              Fecha de la consulta.
+     * @param nombrePaciente     Nombre del paciente.
+     * @param diagnosticoInicial Diagnóstico inicial determinado durante la consulta.
+     * @param motivoConsulta     Motivo por el cual el paciente asiste a la consulta.
+     */
+    public ConsultaGeneral(String codigo, String fecha, String nombrePaciente, String diagnosticoInicial,
+                           String motivoConsulta) {
+        super(codigo, fecha, nombrePaciente, diagnosticoInicial);
+        this.motivoConsulta = motivoConsulta;
+    }
+
+    /**
+     * Obtiene el motivo de la consulta.
+     *
+     * @return Motivo de la consulta en formato de texto.
+     */
+    public String getMotivoConsulta() {
+        return motivoConsulta;
+    }
+
+    /**
+     * Establece el motivo de la consulta.
+     *
+     * @param motivoConsulta Motivo de la consulta en formato de texto.
+     */
+    public void setMotivoConsulta(String motivoConsulta) {
+        this.motivoConsulta = motivoConsulta;
+    }
+
+    /**
+     * Retorna una representación en cadena del objeto, incluyendo los atributos
+     * heredados del registro médico y el motivo de la consulta.
+     *
+     * @return Cadena que representa la consulta general.
+     */
+    @Override
+    public String toString() {
+        return super.toString() + "\nConsultaGeneral{"
+                + "motivoConsulta='" + motivoConsulta + '\''
+                + '}';
+    }
+
+}
