@@ -1,0 +1,5 @@
+Êþº¾   7    'co/edu/poli/examen3/servicios/Operacion   java/lang/Object create ?(Lco/edu/poli/examen3/modelo/RegistroMedico;)Ljava/lang/String; read .(I)Lco/edu/poli/examen3/modelo/RegistroMedico;  readAll .()[Lco/edu/poli/examen3/modelo/RegistroMedico; update Y(ILco/edu/poli/examen3/modelo/RegistroMedico;)Lco/edu/poli/examen3/modelo/RegistroMedico; delete 
+SourceFile Operacion.java                 	 
+   
+    
+         
